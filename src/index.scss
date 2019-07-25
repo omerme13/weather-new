@@ -1,0 +1,43 @@
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+
+    @media only screen and (max-width: 1800px) {
+        font-size: 50%;
+    }
+
+    @media only screen and (max-width: 1400px) {
+        font-size: 43.75%;
+    }
+
+    @media only screen and (max-width: 1200px) {
+        font-size: 37.5%;
+    }
+
+    @media only screen and (max-width: 1050px) {
+        font-size: 31.25%;
+    }
+
+    @media only screen and (max-width: 900px) {
+        font-size: 62.5%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        font-size: 37.5%;
+    }
+}
+
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: white;
+}
+
+
+

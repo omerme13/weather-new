@@ -1,0 +1,15 @@
+
+.App {
+    text-align: center;
+    background-image: url(./img/Background.png);
+    background-size: cover;
+    height: 100vh;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    @media only screen and (max-width: 56.25em) {
+        height: auto;
+    }
+}

@@ -1,0 +1,16 @@
+.weather-boxes {
+    display: flex;
+    width: 96%;
+    margin-right: 0;
+    justify-content: space-between;
+    padding-right: 10rem;
+    
+    
+    @media only screen and (max-width: 56.25em) {
+        flex-direction: column;
+        width: 60%;
+        margin: 0 20%;
+        padding-right: 0;
+        justify-content: space-around;
+    }
+}

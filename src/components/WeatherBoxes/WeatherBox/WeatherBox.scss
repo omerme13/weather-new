@@ -1,0 +1,43 @@
+.weather-box {
+    width: 38.4rem;
+    height: 48rem;
+    background-color: rgba(white, 0.15);
+    padding: 4rem;
+
+    &__day,
+    &__icon {
+        margin-bottom: 3rem;
+    }
+
+    &__icon {
+        // width: 21.6rem;
+        width: 13rem;
+    }
+
+    &__day,
+    &__cond {
+        font-size: 3.4rem;
+        letter-spacing: -1px;
+        line-height: 5.8rem;
+        color: white;
+        text-align: left;
+        display: block;
+        margin-bottom: 3rem;
+    }
+
+    &__degrees {
+        font-size: 7.2rem;
+        letter-spacing: -2px;
+        line-height: 5.8rem;
+        font-weight: 300; 
+        text-align: left;
+        display: block;
+        margin-bottom: 1rem;
+        margin-top: 4rem;
+    }
+
+    @media only screen and (max-width: 56.25em) {
+        align-self: center;
+        margin-bottom: 6rem;
+    }
+}

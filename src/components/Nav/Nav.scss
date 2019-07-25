@@ -1,0 +1,13 @@
+
+
+.nav {
+    width: 96%;
+    display: flex;
+    justify-content: space-between;
+
+    @media only screen and (max-width: 56.25em) {
+        order: 1;
+        width: 60%;
+        align-self: center;
+    }
+}

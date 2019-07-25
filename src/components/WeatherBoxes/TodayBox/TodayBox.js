@@ -4,7 +4,6 @@ import React from 'react'
 import './TodayBox.scss';
 
 const todayBox = props => {
-    console.log(props.deg)
     return (
         <div className="today-box">
             <div className="today-box__location">{props.city}</div>

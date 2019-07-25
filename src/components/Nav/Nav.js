@@ -6,8 +6,8 @@ import './Nav.scss';
 
 const nav = props => (
     <div className="nav">
-        <ArrowButton />
-        <ArrowButton right />
+        <ArrowButton clicked={props.slideBoxesBack}/>
+        <ArrowButton right clicked={props.slideBoxes} />
     </div>
 );
 

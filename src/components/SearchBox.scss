@@ -8,7 +8,6 @@
         margin: 3rem 0 4rem 0;
     }
 
-
     &__container {
         width: 58.1rem;
         height: 9.6rem;
@@ -45,11 +44,11 @@
         left: 7rem;
 
         &:hover {
-            transform: translateY(-2px);
+            transform: translateY(-60%);
         }
 
-        &:hover:active {
-            transform: translateY(0);
+        &:active {
+            transform: translateY(-50%);
         }
     }
 

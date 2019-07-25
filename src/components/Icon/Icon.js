@@ -5,6 +5,7 @@ const icon = props => (
         className={props.className} 
         src={props.src} 
         alt={`icon ${props.className}`} 
+        onClick={props.clicked}
     />
 );
 

@@ -5,10 +5,10 @@ import Icon from './Icon/Icon';
 
 import './SearchBox.scss';
 
-const searchBox = () => (  
+const searchBox = props => (  
     <div className="search-box">
-        <div className="search-box__container">
-            <Icon className ="search-box__icon" src={searchIcon} />
+        <div className="search-box__container"> 
+            <Icon className ="search-box__icon" src={searchIcon} clicked={props.getWeather}/>
             <input 
                 className="search-box__input" 
                 type="text" 

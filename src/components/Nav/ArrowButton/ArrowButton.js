@@ -14,6 +14,7 @@ const arrowButton = props => {
         <Icon 
             className={`arrow-button arrow-button--${side}`} 
             src={arrowIcon} 
+            clicked={props.clicked}
         />
     );
 };

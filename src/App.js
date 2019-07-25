@@ -6,60 +6,84 @@ import WeatherBoxes from './components/WeatherBoxes/WeatherBoxes';
 
 import './App.scss';
 
-class App extends Component {
+const apiKey = '352ab6b8c9501a470633fda871c77221';
 
+class App extends Component {
     state = {
-        city: 'haifa',
-        day: "",
-        condition: "",
-        temp: "",
-        tempMin: "",
-        tempMax: "",
-        iconURL: "",
-        apiKey: '352ab6b8c9501a470633fda871c77221'
+        city: 'new york',
+        data: [{}],
+        // class: "",
+        displayWeather: "first"
     }
 
-    componentDidMount() {       
-        this.getWeather()
+    componentDidMount() {
+        this.uploadWeather() 
+    }
+
+    uploadWeather = () => {
+        this.getWeather(this.state.city)
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+    }
+    
+    changeWeather = (e) => {
+        const city = e.target.nextSibling.value;
+
+        this.getWeather(city)
             .then(res => console.log(res))
             .catch(err => console.log(err));
     }
 
-    async getWeather() {  
-        const currDay = new Date();
-        // const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${this.state.data.city}&appid=${this.state.apiKey}`);
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${this.state.city}&cnt=40&APPID=${this.state.apiKey}`);
+    slideBoxes = () => {
+        // this.setState({class: "slide"});
+        this.setState({displayWeather: "second"});
+    }
 
+    slideBoxesBack = () => {
+        // this.setState({class: ""});
+        this.setState({displayWeather: "first"});
+
+    }
+
+    async getWeather(city) {           
+        const data = [];
+        let currDay = new Date();
+        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
         const responseData = await response.json();
-        this.setState({
-            city: responseData.city.name,
-            // day: Date().split(' ')[0],
-            day: currDay.getDay(),
-            temp: (responseData.list[0].main.temp - 273.15).toFixed(0),
-            tempMax: (responseData.list[0].main.temp_max - 273.15).toFixed(0),
-            tempMin: (responseData.list[0].main.temp_min - 273.15).toFixed(0),
-            condition: responseData.list[0].weather[0].description,
-            iconURL: 'http://openweathermap.org/img/w/' + responseData.list[0].weather[0].icon + '.png'
 
+        for (let i = 0; i < 40; i = i + 7) {
+            let dayNum = (currDay.getDay() + (i/7)) % 7;
+            data.push({
+                day: dayNum,
+                temp: (responseData.list[i].main.temp - 273.15).toFixed(0),
+                tempMax: (responseData.list[i].main.temp_max - 273.15).toFixed(0),
+                tempMin: (responseData.list[i].main.temp_min - 273.15).toFixed(0),
+                condition: responseData.list[i].weather[0].description,
+                iconURL: 'http://openweathermap.org/img/w/' + responseData.list[i].weather[0].icon + '.png'
+            });
+        }
+
+        this.setState({
+            city: city,
+            data: data
         });
-        console.log(this.state);
+
         return responseData;
     }
 
     render() {
-
         return (
             <div className="App">
-                <SearchBox />
-                <Nav />
+                <SearchBox getWeather={(e) => this.changeWeather(e)}/>
+                <Nav 
+                    slideBoxes={this.slideBoxes} 
+                    slideBoxesBack={this.slideBoxesBack} 
+                />
                 <WeatherBoxes 
                     city={this.state.city}
-                    temp={this.state.temp}
-                    condition={this.state.condition}
-                    minTemp={this.state.tempMin}
-                    maxTemp={this.state.tempMax}
-                    iconURL={this.state.iconURL}
-                    day={this.state.day}
+                    data={this.state.data}
+                    class={this.state.class}
+                    changeDays={this.state.displayWeather}
                 />
             </div>
         );

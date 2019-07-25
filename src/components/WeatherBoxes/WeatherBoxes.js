@@ -25,23 +25,27 @@ const convertDayToString = (day) => {
 }
 
 const weatherBoxes = props => {
+    const updatedData = [...props.data];
+    const todayData = updatedData.shift();
+
     return (
-        <div className="weather-boxes">
+        <div className={`weather-boxes ${props.class}`}>
             <TodayBox 
                 city={props.city} 
-                deg={props.temp}
-                cond={props.condition}
+                deg={todayData.temp}
+                cond={todayData.condition}
             />
-            <WeatherBox 
-                city={props.city} 
-                minTemp={props.minTemp}
-                maxTemp={props.maxTemp}
-                cond={props.condition}
-                icon={props.iconURL}
-                day={convertDayToString(props.day)}
-            />
-            <WeatherBox />
-            <WeatherBox />
+            {updatedData.map(box => (
+                <WeatherBox 
+                    key={box.day}
+                    minTemp={box.tempMin}
+                    maxTemp={box.tempMax}
+                    cond={box.condition}
+                    icon={box.iconURL}
+                    day={convertDayToString(box.day)}
+                    class={props.changeDays}
+                />
+            ))}
         </div>
     );
 }

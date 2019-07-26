@@ -56,7 +56,7 @@ class App extends Component {
                 tempMax: (responseData.list[i].main.temp_max - 273.15).toFixed(0),
                 tempMin: (responseData.list[i].main.temp_min - 273.15).toFixed(0),
                 condition: responseData.list[i].weather[0].description,
-                iconURL: 'https://openweathermap.org/img/w/' + responseData.list[i].weather[0].icon + '.png'
+                iconURL: `https://openweathermap.org/img/w/${responseData.list[i].weather[0].icon}.png`
             });
         }
 

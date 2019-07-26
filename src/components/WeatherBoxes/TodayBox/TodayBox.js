@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 import './TodayBox.scss';
 
 const todayBox = props => {

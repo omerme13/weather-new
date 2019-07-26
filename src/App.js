@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Nav from './components/Nav/Nav';
-import SearchBox from './components/SearchBox';
+import SearchBox from './components/SearchBox/SearchBox';
 import WeatherBoxes from './components/WeatherBoxes/WeatherBoxes';
 
 import './App.scss';
@@ -48,8 +48,8 @@ class App extends Component {
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
         const responseData = await response.json();
 
-        for (let i = 0; i < 40; i = i + 7) {
-            let dayNum = (currDay.getDay() + (i/7)) % 7;
+        for (let i = 0; i < 40; i = i + 8) {
+            let dayNum = (currDay.getDay() + (i/8)) % 7;
             data.push({
                 day: dayNum,
                 temp: (responseData.list[i].main.temp - 273.15).toFixed(0),
@@ -75,6 +75,7 @@ class App extends Component {
                 <Nav 
                     displaySecondPart={this.displaySecondPart} 
                     displayFirstPart={this.displayFirstPart} 
+                    show={this.state.displayWeather}
                 />
                 <WeatherBoxes 
                     city={this.state.city}

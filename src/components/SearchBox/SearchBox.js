@@ -1,7 +1,7 @@
 import React from 'react'
 
-import searchIcon from '../img/Rectangle2.svg';
-import Icon from './Icon/Icon';
+import searchIcon from '../../img/Rectangle2.svg';
+import Icon from '../Icon/Icon';
 
 import './SearchBox.scss';
 

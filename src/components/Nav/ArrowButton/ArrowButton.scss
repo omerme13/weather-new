@@ -1,32 +1,29 @@
+@import '../../../variables.scss';
+
 .arrow-button {
     width: 5.8rem;
     cursor: pointer;
     transition: 0.2s;
     margin: 5rem 10rem 2.8rem 0;
 
-    @media only screen and (max-width: 56.25em) {
-        margin-right: 0;
+    &:hover {
+        opacity: 0.7;
+
+        &:active {
+            opacity: 1;
+        }
     }
 
-    &--right {
-        &:hover {
-            transform: translateY(-2px);
-
-            &:active {
-                transform: translateY(0);
-            }
-        }
+    @media only screen and (max-width: $bp-s) {
+        margin-right: 0;
+        transform: rotate(90deg);
     }
 
     &--left {
         transform: rotate(180deg);
 
-        &:hover {
-            transform: rotate(180deg) translateY(2px);
-
-            &:active {
-                transform: rotate(180deg) translateY(0);
-            }
+        @media only screen and (max-width: $bp-s) {
+            transform: rotate(-90deg);
         }
     }
 }

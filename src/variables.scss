@@ -1,8 +1,10 @@
-// colors
 $color-text-blue: #0d1e57;
 $color-search-box-light-1: #73abd7;
 $color-search-box-light-2: #80b3da;
 $color-search-box-border: #5399e6;
+
+$background-search-box: linear-gradient(135deg, $color-search-box-light-1 0%, $color-search-box-light-2 100%);
+$background-image: url(./img/Background.png);
 
 // breaking points
 $bp-xxl: 112.5em;  // 1800px;

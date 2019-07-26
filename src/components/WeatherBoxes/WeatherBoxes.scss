@@ -1,21 +1,18 @@
+@import '../../variables.scss';
+
 .weather-boxes {
     display: flex;
     width: 96%;
     margin-right: 0;
+    margin-bottom: 6rem;    
     justify-content: space-between;
     padding-right: 10rem;
-    transition: 1s ease-in-out;
     
-    
-    @media only screen and (max-width: 56.25em) {
+    @media only screen and (max-width: $bp-s) {
         flex-direction: column;
         width: 60%;
         margin: 0 20%;
         padding-right: 0;
         justify-content: space-around;
     }
-}
-
-.slide {
-    transform: translateX(-200%);
 }

@@ -1,3 +1,5 @@
+@import '../../../variables.scss';
+
 .today-box {
     width: 31rem;
     height: 48rem;
@@ -15,7 +17,7 @@
         letter-spacing: 1px;
         font-weight: 600;
 
-        @media only screen and (max-width: 56.25em) {
+        @media only screen and (max-width: $bp-s) {
             font-size: 3.5rem;
         }
     }
@@ -34,7 +36,7 @@
         margin-top: 2rem;
     }
 
-    @media only screen and (max-width: 56.25em) {
+    @media only screen and (max-width: $bp-s) {
         align-self: center;
         margin-bottom: 5rem;
     }

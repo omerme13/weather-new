@@ -1,9 +1,19 @@
+@import '../../../variables.scss';
+
 .weather-box {
     width: 38.4rem;
     height: 48rem;
     background-color: rgba(white, 0.15);
     padding: 4rem;
     transition: opacity 2s, transform 0.2s;
+
+    &:nth-child(5) {
+        margin: 0 auto 0 15rem;
+
+        @media only screen and (max-width: $bp-s) {
+            margin: 0;
+        }
+    }
 
     &:hover {
         transform: translateY(-0.5rem) scale(1.05);
@@ -40,26 +50,15 @@
         margin-top: 4rem;
     }
 
-    @media only screen and (max-width: 56.25em) {
+    @media only screen and (max-width: $bp-s) {
         align-self: center;
         margin-bottom: 6rem;
     }
 }
 
-.first {
-    &:nth-child(5),
-    &:nth-child(6) {
-        z-index: -1;
-        position: absolute;
-        opacity: 0;
-    }
+.first:nth-child(5),
+.second:not(:nth-child(5)) {
+    z-index: -1;
+    position: absolute;
+    opacity: 0;
 }
-
-.second {
-    &:not(:nth-child(n + 5)) {
-        z-index: -1;
-        position: absolute;
-        opacity: 0;
-    }
-}
-

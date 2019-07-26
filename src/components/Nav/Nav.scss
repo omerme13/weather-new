@@ -1,11 +1,17 @@
+@import '../../variables.scss';
+
 .nav {
-    width: 96%;
     display: flex;
     justify-content: space-between;
 
-    @media only screen and (max-width: 56.25em) {
+    @media only screen and (max-width: $bp-s) {
         order: 1;
-        width: 60%;
         align-self: center;
+    }
+}
+
+.move {   
+    @media only screen and (min-width: $bp-s) {
+        width: 96%;
     }
 }

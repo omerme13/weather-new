@@ -12,7 +12,6 @@ class App extends Component {
     state = {
         city: 'new york',
         data: [{}],
-        // class: "",
         displayWeather: "first"
     }
 
@@ -22,7 +21,7 @@ class App extends Component {
 
     uploadWeather = () => {
         this.getWeather(this.state.city)
-            .then(res => console.log(res))
+            .then(res => res)
             .catch(err => console.log(err));
     }
     
@@ -30,25 +29,23 @@ class App extends Component {
         const city = e.target.nextSibling.value;
 
         this.getWeather(city)
-            .then(res => console.log(res))
+            .then(res => res)
             .catch(err => console.log(err));
     }
 
-    slideBoxes = () => {
-        // this.setState({class: "slide"});
+    displaySecondPart = () => {
         this.setState({displayWeather: "second"});
     }
 
-    slideBoxesBack = () => {
-        // this.setState({class: ""});
+    displayFirstPart = () => {
         this.setState({displayWeather: "first"});
 
     }
 
-    async getWeather(city) {           
+    getWeather = async (city) => {           
         const data = [];
         let currDay = new Date();
-        const response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
         const responseData = await response.json();
 
         for (let i = 0; i < 40; i = i + 7) {
@@ -59,7 +56,7 @@ class App extends Component {
                 tempMax: (responseData.list[i].main.temp_max - 273.15).toFixed(0),
                 tempMin: (responseData.list[i].main.temp_min - 273.15).toFixed(0),
                 condition: responseData.list[i].weather[0].description,
-                iconURL: 'http://openweathermap.org/img/w/' + responseData.list[i].weather[0].icon + '.png'
+                iconURL: 'https://openweathermap.org/img/w/' + responseData.list[i].weather[0].icon + '.png'
             });
         }
 
@@ -76,8 +73,8 @@ class App extends Component {
             <div className="App">
                 <SearchBox getWeather={(e) => this.changeWeather(e)}/>
                 <Nav 
-                    slideBoxes={this.slideBoxes} 
-                    slideBoxesBack={this.slideBoxesBack} 
+                    displaySecondPart={this.displaySecondPart} 
+                    displayFirstPart={this.displayFirstPart} 
                 />
                 <WeatherBoxes 
                     city={this.state.city}

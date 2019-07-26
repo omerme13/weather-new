@@ -6,8 +6,8 @@ import './Nav.scss';
 
 const nav = props => (
     <div className="nav">
-        <ArrowButton clicked={props.slideBoxesBack}/>
-        <ArrowButton right clicked={props.slideBoxes} />
+        <ArrowButton clicked={props.displayFirstPart}/>
+        <ArrowButton right clicked={props.displaySecondPart} />
     </div>
 );
 

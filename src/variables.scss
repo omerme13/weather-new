@@ -1,11 +1,13 @@
+// colors
 $color-text-blue: #0d1e57;
 $color-search-box-light-1: #73abd7;
 $color-search-box-light-2: #80b3da;
 $color-search-box-border: #5399e6;
 
 // breaking points
-$bp-largest: 75em;  // 1200px;
-$bp-large: 68.75em;  // 1100px;
-$bp-medium: 56.25em;  // 900px;
-$bp-small: 37.5em;  // 600px;
-$bp-smallest: 31.25em;  // 500px;
+$bp-xxl: 112.5em;  // 1800px;
+$bp-xl: 87.5em;  // 1400px;
+$bp-l: 75em;  // 1200px;
+$bp-m: 65.625em;  // 1050px;
+$bp-s: 56.25em;  // 900px;
+$bp-xs: 37.5em;  // 600px;

@@ -33,20 +33,9 @@ class App extends Component {
             .catch(err => console.log(err));
     }
 
-    displaySecondPart = () => {
-        this.setState({displayWeather: "second"});
-    }
-
-    displayFirstPart = () => {
-        this.setState({displayWeather: "first"});
-
-    }
-
-    getWeather = async (city) => {           
+    getWeatherData = (responseData) => {
         const data = [];
-        let currDay = new Date();
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
-        const responseData = await response.json();
+        let curDay = new Date();
 
         for (let i = 0; i < 40; i = i + 8) {
             let max = (responseData.list[i].main.temp_max - 273.15);
@@ -64,8 +53,8 @@ class App extends Component {
                 }
             }
 
-            let dayNum = (currDay.getDay() + (i/8)) % 7;
-            
+            let dayNum = (curDay.getDay() + (i/8)) % 7;
+
             data.push({
                 day: dayNum,
                 temp: (responseData.list[i].main.temp - 273.15).toFixed(0),
@@ -75,14 +64,26 @@ class App extends Component {
                 iconURL: `https://openweathermap.org/img/w/${responseData.list[i].weather[0].icon}.png`
             });
         }
+        
+        return data;
+    }
 
+    getWeather = async (city) => {           
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
+        const responseData = await response.json();
+        
+        const data = this.getWeatherData(responseData);
         this.setState({
             city: city,
             data: data
         });
-
-        return responseData;
+        
+        return data;
     }
+
+    displayFirstPart = () => this.setState({displayWeather: "first"});
+    
+    displaySecondPart = () => this.setState({displayWeather: "second"});
 
     render() {
         return (

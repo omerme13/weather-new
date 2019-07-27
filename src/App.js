@@ -49,12 +49,28 @@ class App extends Component {
         const responseData = await response.json();
 
         for (let i = 0; i < 40; i = i + 8) {
+            let max = (responseData.list[i].main.temp_max - 273.15);
+            let min = (responseData.list[i].main.temp_min - 273.15);
+            
+            for (let j = 1; j < 8; j++) {
+                let curMax = (responseData.list[i + j].main.temp_max - 273.15);
+                let curMin = (responseData.list[i + j].main.temp_min - 273.15);
+
+                if (curMax > max) {
+                    max = curMax;
+                }
+                if (curMin < min) {
+                    min = curMin;
+                }
+            }
+
             let dayNum = (currDay.getDay() + (i/8)) % 7;
+            
             data.push({
                 day: dayNum,
                 temp: (responseData.list[i].main.temp - 273.15).toFixed(0),
-                tempMax: (responseData.list[i].main.temp_max - 273.15).toFixed(0),
-                tempMin: (responseData.list[i].main.temp_min - 273.15).toFixed(0),
+                tempMax: max.toFixed(0),
+                tempMin: min.toFixed(0),
                 condition: responseData.list[i].weather[0].description,
                 iconURL: `https://openweathermap.org/img/w/${responseData.list[i].weather[0].icon}.png`
             });

@@ -9,10 +9,15 @@ import './App.scss';
 
 const apiKey = '352ab6b8c9501a470633fda871c77221';
 
+let initialCity = localStorage.getItem('city');
+if (!initialCity) {
+    initialCity = 'new york';
+}
+
 class App extends Component {
     state = {
-        city: 'new york',
-        country: 'US',
+        city: initialCity,
+        country: '',
         data: [{}],
         background: '',
         displayWeather: "first"
@@ -39,7 +44,6 @@ class App extends Component {
     getWeatherData = (responseData) => {
         const data = [];
         let curDay = new Date();
-        console.log(responseData)
 
         for (let i = 0; i < 40; i = i + 8) {
             let max = (responseData.list[i].main.temp_max - 273.15);
@@ -70,7 +74,6 @@ class App extends Component {
             });
         }
         
-        console.log(data)
         return {
             data: data,
             country: responseData.city.country
@@ -79,9 +82,10 @@ class App extends Component {
 
     getWeather = async (city) => {           
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
-        const responseData = await response.json();
-        
+        const responseData = await response.json();    
         const weatherData = this.getWeatherData(responseData);
+
+        localStorage.setItem('city', city);
         this.setState({
             city: city,
             data: weatherData.data, 

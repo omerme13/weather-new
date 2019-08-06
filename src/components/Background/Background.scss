@@ -1,0 +1,17 @@
+@import '../../variables.scss';
+
+.background {
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    @media only screen and (max-width: $bp-s) {
+        height: auto;
+        background-attachment: fixed;
+    }
+}

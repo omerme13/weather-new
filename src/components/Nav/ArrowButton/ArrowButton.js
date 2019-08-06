@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Icon from '../../Icon/Icon';
-import arrowIcon from '../../../img/arrow-right.svg';
+import arrowIcon from '../../../img/arrow.svg';
 
 import './ArrowButton.scss';
 

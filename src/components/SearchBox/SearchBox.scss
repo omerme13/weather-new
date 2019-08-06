@@ -18,14 +18,19 @@
     &__input {
         flex: 1;
         font-size: 2.9rem;
-        letter-spacing: -1px;
         line-height: 3.4rem;
         font-family: inherit;
         font-weight: inherit;
         color: inherit;
-        background-image: $background-search-box;
-        border: 2px solid $color-search-box-border;
+        background: rgba($color-search-box-light-1, 0.3);
+        border: none;
         padding-left: 20rem;
+        border-radius: 10rem;
+
+        &:focus {
+            outline: none;
+            background: rgba($color-search-box-light-1, 0.4);
+        }
         
         &::placeholder {
             color: $color-text-blue;

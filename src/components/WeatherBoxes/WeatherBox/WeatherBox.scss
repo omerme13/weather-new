@@ -5,7 +5,9 @@
     height: 48rem;
     background-color: rgba(white, 0.15);
     padding: 4rem;
-    transition: opacity 2s, transform 0.2s;
+    box-shadow: 0 2rem 4rem rgba(black, 0.2);
+    border-radius: 3px;
+    transition: opacity 2s, transform 0.2s, box-shadow 0.2s;
 
     &:nth-child(5) {
         margin: 0 auto 0 15rem;
@@ -16,7 +18,9 @@
     }
 
     &:hover {
-        transform: translateY(-0.5rem) scale(1.05);
+        transform: translateY(-1rem) scale(1.03);
+        box-shadow: 0 2rem 2rem rgba(black, 0.4);
+
     }
 
     &__day,

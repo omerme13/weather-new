@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Nav from './components/Nav/Nav';
 import SearchBox from './components/SearchBox/SearchBox';
 import WeatherBoxes from './components/WeatherBoxes/WeatherBoxes';
+import Background from './components/Background/Background';
 
 import './App.scss';
 
@@ -11,7 +12,9 @@ const apiKey = '352ab6b8c9501a470633fda871c77221';
 class App extends Component {
     state = {
         city: 'new york',
+        country: 'US',
         data: [{}],
+        background: '',
         displayWeather: "first"
     }
 
@@ -36,6 +39,7 @@ class App extends Component {
     getWeatherData = (responseData) => {
         const data = [];
         let curDay = new Date();
+        console.log(responseData)
 
         for (let i = 0; i < 40; i = i + 8) {
             let max = (responseData.list[i].main.temp_max - 273.15);
@@ -57,6 +61,7 @@ class App extends Component {
 
             data.push({
                 day: dayNum,
+                humidity: responseData.list[i].main.humidity,
                 temp: (responseData.list[i].main.temp - 273.15).toFixed(0),
                 tempMax: max.toFixed(0),
                 tempMin: min.toFixed(0),
@@ -65,20 +70,26 @@ class App extends Component {
             });
         }
         
-        return data;
+        console.log(data)
+        return {
+            data: data,
+            country: responseData.city.country
+        };
     }
 
     getWeather = async (city) => {           
         const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&APPID=${apiKey}`);
         const responseData = await response.json();
         
-        const data = this.getWeatherData(responseData);
+        const weatherData = this.getWeatherData(responseData);
         this.setState({
             city: city,
-            data: data
+            data: weatherData.data, 
+            country: weatherData.country,
+            background: responseData.list[0].weather[0].icon.slice(0, -1)
         });
         
-        return data;
+        return weatherData.data;
     }
 
     displayFirstPart = () => this.setState({displayWeather: "first"});
@@ -88,18 +99,21 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <SearchBox getWeather={(e) => this.changeWeather(e)}/>
-                <Nav 
-                    displaySecondPart={this.displaySecondPart} 
-                    displayFirstPart={this.displayFirstPart} 
-                    show={this.state.displayWeather}
-                />
-                <WeatherBoxes 
-                    city={this.state.city}
-                    data={this.state.data}
-                    class={this.state.class}
-                    changeDays={this.state.displayWeather}
-                />
+                <Background cond={this.state.background}>
+                    <SearchBox getWeather={(e) => this.changeWeather(e)}/>
+                    <Nav 
+                        displaySecondPart={this.displaySecondPart} 
+                        displayFirstPart={this.displayFirstPart} 
+                        show={this.state.displayWeather}
+                    />
+                    <WeatherBoxes 
+                        city={this.state.city}
+                        data={this.state.data}
+                        country={this.state.country}
+                        class={this.state.class}
+                        changeDays={this.state.displayWeather}
+                    />
+                </Background>
             </div>
         );
     }

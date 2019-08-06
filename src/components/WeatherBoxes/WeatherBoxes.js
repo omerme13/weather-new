@@ -32,8 +32,10 @@ const weatherBoxes = props => {
         <div className={`weather-boxes ${props.class}`}>
             <TodayBox 
                 city={props.city} 
+                country={props.country} 
                 deg={todayData.temp}
                 cond={todayData.condition}
+                humidity={todayData.humidity}
             />
             {updatedData.map(box => (
                 <WeatherBox 

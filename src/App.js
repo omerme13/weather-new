@@ -4,7 +4,8 @@ import Nav from './components/Nav/Nav';
 import SearchBox from './components/SearchBox/SearchBox';
 import WeatherBoxes from './components/WeatherBoxes/WeatherBoxes';
 import Background from './components/Background/Background';
-import Graph from './Graph';
+import Modal from './components/Modal/Modal';
+import Graph from './components/Graph/Graph';
 
 import './App.scss';
 
@@ -21,7 +22,8 @@ class App extends Component {
         country: '',
         data: [{}],
         background: '',
-        displayWeather: "first"
+        displayWeather: "first",
+        graphShown: false
     }
 
     componentDidMount() {
@@ -101,6 +103,8 @@ class App extends Component {
     
     displaySecondPart = () => this.setState({displayWeather: "second"});
 
+    toggleGraphHandler = () => this.setState({graphShown: !this.state.graphShown});
+
     render() {
         return (
             <div className="App">
@@ -112,13 +116,16 @@ class App extends Component {
                         show={this.state.displayWeather}
                     />
                     <WeatherBoxes 
+                        clicked={this.toggleGraphHandler}
                         city={this.state.city}
                         data={this.state.data}
                         country={this.state.country}
                         class={this.state.class}
                         changeDays={this.state.displayWeather}
                     />
-                    {/* <Graph data={this.state.data} /> */}
+                    <Modal show={this.state.graphShown} modalClose={this.toggleGraphHandler} >
+                        <Graph data={this.state.data} />
+                    </Modal>
                 </Background>
             </div>
         );

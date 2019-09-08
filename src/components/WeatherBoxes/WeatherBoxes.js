@@ -31,6 +31,7 @@ const weatherBoxes = props => {
     return (
         <div className={`weather-boxes ${props.class}`}>
             <TodayBox 
+                clicked={props.clicked}
                 city={props.city} 
                 country={props.country} 
                 deg={todayData.temp}

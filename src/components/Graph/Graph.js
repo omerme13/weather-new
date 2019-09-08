@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import {
 	VictoryChart,
 	VictoryLine,
-	VictoryTheme,
-	VictoryContainer
+    VictoryTheme,
+    VictoryLabel
 } from "victory";
 
 import './Graph.scss';
@@ -30,14 +30,17 @@ class graph extends Component {
 					// containerComponent={<VictoryContainer responsive={false} />}
 					animate={{ duration: 500, onLoad: { duration: 1000 } }}
 					width={1920}
-					height={500}
-					domainPadding={{ y: 1 }}
+					height={1080}
+                    domainPadding={{ y: 50, x: 50 }}
+                    padding={{bottom: 120, left: 10, right:120, top: 120 }}
 				>
 					<VictoryLine
 						style={{
-							data: { stroke: "#c43a31", strokeWidth: 3},
+							data: { stroke: "#fff", strokeWidth: 5},
 						}}
-						data={data}
+                        data={data}
+                        labels={({ datum }) => datum.y}
+                        labelComponent={<VictoryLabel renderInPortal dy={-30} dx={10}/>}
 					/>
 				</VictoryChart>
 			</div>

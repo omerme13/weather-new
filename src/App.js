@@ -4,6 +4,7 @@ import Nav from './components/Nav/Nav';
 import SearchBox from './components/SearchBox/SearchBox';
 import WeatherBoxes from './components/WeatherBoxes/WeatherBoxes';
 import Background from './components/Background/Background';
+import Graph from './Graph';
 
 import './App.scss';
 
@@ -117,6 +118,7 @@ class App extends Component {
                         class={this.state.class}
                         changeDays={this.state.displayWeather}
                     />
+                    {/* <Graph data={this.state.data} /> */}
                 </Background>
             </div>
         );

@@ -106,6 +106,11 @@ class App extends Component {
     toggleGraphHandler = () => this.setState({graphShown: !this.state.graphShown});
 
     render() {
+        // instead of just rendering the graph i only render it when the graph supposed to show so it can animate when the button is clicked
+        const graph = this.state.graphShown 
+            ? <Graph data={this.state.data} /> 
+            : null;
+
         return (
             <div className="App">
                 <Background cond={this.state.background}>
@@ -124,7 +129,7 @@ class App extends Component {
                         changeDays={this.state.displayWeather}
                     />
                     <Modal show={this.state.graphShown} modalClose={this.toggleGraphHandler} >
-                        <Graph data={this.state.data} />
+                        {graph}
                     </Modal>
                 </Background>
             </div>

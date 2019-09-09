@@ -7,6 +7,8 @@ import {
     VictoryLabel
 } from "victory";
 
+import {convertDayToString} from '../../shared';
+
 import './Graph.scss';
 
 class graph extends Component {
@@ -17,8 +19,12 @@ class graph extends Component {
 
 		if(this.props.data.length > 1) {
 			data = this.props.data.map((item, i) => {
-				const date = `${d.getDate() + i} / ${(d.getMonth() + 1 ) % 12}`;
-				return {x: date, y: Number(item.temp)}
+				const dayString = convertDayToString(d.getDay() + i).split('').splice(0, 3).join('');
+				const dayNumber = d.getDate() + i;
+				const month = (new Date().getMonth() + 1 ) % 12;
+
+				const date = `${dayString} - ${dayNumber} / ${month}`;
+				return {x: date, y: Number(item.temp) + '°'}
 			})
 		}
 
@@ -31,7 +37,7 @@ class graph extends Component {
 					animate={{ duration: 500, onLoad: { duration: 1000 } }}
 					width={1920}
 					height={1080}
-                    domainPadding={{ y: 50, x: 50 }}
+                    domainPadding={{ y: 50, x: 100 }}
                     padding={{bottom: 120, left: 10, right:120, top: 120 }}
 				>
 					<VictoryLine

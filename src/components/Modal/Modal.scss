@@ -3,7 +3,8 @@
 .modal {
     position: fixed;
     z-index: 500;
-    background-color: rgba(navy, 0.8);
+    background-color: rgba(royalblue, 0.85);
+    // background-color: rgba(#3498db, 0.85);
     width: 80%;
     height: auto;
     left: 10%;
@@ -12,6 +13,24 @@
     border-radius: 1rem;
     box-shadow: 0 2rem 4rem rgba(black, 0.2);
     transition: all 0.3s ease-out;
+
+    &__header {
+        font-size: 6rem;
+        font-weight: 300;
+    }
+
+    &__close-button {
+        cursor: pointer;
+        position: absolute;
+        top: 3rem;
+        right: 3rem;
+        font-size: 3rem;
+        transition: 0.3s;
+
+        &:hover {
+            color: #f1c40f;
+        }
+    }
 
     @media only screen and (max-width: $bp-xl) {
         top: 15%;

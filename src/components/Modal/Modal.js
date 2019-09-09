@@ -18,7 +18,7 @@ class Modal extends Component {
                     className="modal"
                     style={{transform: this.props.show ? 'translateY(0)' : 'translateY(-1000vh)'}}
                 >
-                    <div className="modal__close-button" onClick={this.props.modalClose}>&#10006;</div>
+                    <div className="modal__close-button" onClick={this.props.modalClose}>&#10005;</div>
                     <h2 className="modal__header">5 day forecast</h2>
                     {this.props.children}
                 </div>

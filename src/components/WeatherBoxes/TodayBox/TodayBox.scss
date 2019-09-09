@@ -7,6 +7,11 @@
     display: flex;
     flex-direction: column;
 
+    @media only screen and (max-width: $bp-s) {
+        align-self: center;
+        margin-bottom: 10rem;
+    }
+
     &__day {
         font-size: 2.9rem;
         font-weight: 400;
@@ -47,8 +52,5 @@
         margin-bottom: 0.5rem;
     }
 
-    @media only screen and (max-width: $bp-s) {
-        align-self: center;
-        margin-bottom: 5rem;
-    }
+
 }

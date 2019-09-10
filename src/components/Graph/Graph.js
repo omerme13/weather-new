@@ -38,7 +38,7 @@ class graph extends Component {
                     // containerComponent={<VictoryContainer responsive={false} />}
                     animate={{ duration: 500, onLoad: { duration: 1000 } }}
                     width={1920}
-                    height={1080}
+                    height={900}
                     domainPadding={{ y: 50, x: 100 }}
                     // padding={{bottom: 120, left: 10, right:120, top: 120 }}
                 >

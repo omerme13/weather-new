@@ -7,8 +7,6 @@ import Background from './components/Background/Background';
 import Modal from './components/Modal/Modal';
 import Graph from './components/Graph/Graph';
 
-import './App.scss';
-
 const apiKey = '352ab6b8c9501a470633fda871c77221';
 
 let initialCity = localStorage.getItem('city');
@@ -27,7 +25,7 @@ class App extends Component {
     }
 
     componentDidMount() {
-        this.uploadWeather() 
+        this.uploadWeather();
     }
 
     uploadWeather = () => {
@@ -106,7 +104,9 @@ class App extends Component {
     toggleGraphHandler = () => this.setState({graphShown: !this.state.graphShown});
 
     render() {
-        // instead of just rendering the graph i only render it when the graph supposed to show so it can animate when the button is clicked
+        // instead of just rendering the graph i only render it when the graph supposed to show for 2 reasons:
+        // 1. if the graph will render first the data prop will be empty (the state is empty at first) and it will cause problems when trying to iterate the data
+        // 2. when the user press the graph button the graph will animate because it will be rendered immediately instead of just being there after the animation has already happened
         const graph = this.state.graphShown 
             ? <Graph data={this.state.data} /> 
             : null;

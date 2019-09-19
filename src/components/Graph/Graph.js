@@ -50,7 +50,8 @@ const graph = props => {
                         <VictoryLabel renderInPortal dy={-40} dx={0} />
                     }
                 />
-                <VictoryAxis /> {/*VictoryAxis used to remove the y axis ticks*/}
+                {/*VictoryAxis used to remove the y axis ticks*/}
+                <VictoryAxis /> 
             </VictoryChart>
         </div>
     );
